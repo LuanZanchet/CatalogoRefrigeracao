@@ -12,6 +12,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <script type="text/javascript" src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+
     </head>
     <body>
         <!-- Navigation-->
@@ -93,37 +95,51 @@
                 }
 
 				function teste(){
-				
-					fetch(`https://spreadsheets.google.com/feeds/cells/1JhQTOHxxcC5EVrL966XE5O3RF-wioKGGsb4r0X0hb8k/1/public/full?alt=json`)
-					.then((body) => body.json())
-					.then((data) => {
-						var testeObjeto = [];
-                        var dadosLocal = data.feed.entry;
-						var quant = dadosLocal.length;
+                    Parse.initialize("IjQnI1UFf79e2xjdbHVZglYm1wPtPnAyqPngEXOJ", "LNr3vzBdBfjQO58z79K6jhJqnE4HU2mxXJC0ZD7j"); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+                    Parse.serverURL = "https://refrigeracaosaoroque.netlify.app/";
+
+                    var user = new Parse.User();
+                        user.save({
+                        username: "s",
+                        email: "s",
+                        password: "s"
+                        }).then(function(response) {
+                        alert('New object create with success! ObjectId: ' + response.id + ', '+ user.get('username'));
+                        }).catch(function(error) {
+                            console.log(error);
+                        alert('Error: ' + error.message);
+                        });
+
+					// fetch(`https://spreadsheets.google.com/feeds/cells/1JhQTOHxxcC5EVrL966XE5O3RF-wioKGGsb4r0X0hb8k/1/public/full?alt=json`)
+					// .then((body) => body.json())
+					// .then((data) => {
+					// 	var testeObjeto = [];
+                    //     var dadosLocal = data.feed.entry;
+					// 	var quant = dadosLocal.length;
 						
-						for (let index = 7; index < quant; index+=7) {
-							var objeto = {};
-							objeto.nome =  dadosLocal[index] ? dadosLocal[index].content.$t : "";
-							objeto.desc = dadosLocal[index+1] ? dadosLocal[index+1].content.$t : "";
-							objeto.preco = dadosLocal[index+2] ? dadosLocal[index+2].content.$t : "";
-							objeto.desclonga = dadosLocal[index+3] ? dadosLocal[index+3].content.$t : "";
-							objeto.foto1 = dadosLocal[index+4] ? dadosLocal[index+4].content.$t : "";
-							objeto.foto2 = dadosLocal[index+5]? dadosLocal[index+5].content.$t : "";
-							objeto.foto3 = dadosLocal[index+6]? dadosLocal[index+6].content.$t : "";
-							testeObjeto.push(objeto);
-						}
-                        localStorage.setItem('obj', JSON.stringify(testeObjeto));
+					// 	for (let index = 7; index < quant; index+=7) {
+					// 		var objeto = {};
+					// 		objeto.nome =  dadosLocal[index] ? dadosLocal[index].content.$t : "";
+					// 		objeto.desc = dadosLocal[index+1] ? dadosLocal[index+1].content.$t : "";
+					// 		objeto.preco = dadosLocal[index+2] ? dadosLocal[index+2].content.$t : "";
+					// 		objeto.desclonga = dadosLocal[index+3] ? dadosLocal[index+3].content.$t : "";
+					// 		objeto.foto1 = dadosLocal[index+4] ? dadosLocal[index+4].content.$t : "";
+					// 		objeto.foto2 = dadosLocal[index+5]? dadosLocal[index+5].content.$t : "";
+					// 		objeto.foto3 = dadosLocal[index+6]? dadosLocal[index+6].content.$t : "";
+					// 		testeObjeto.push(objeto);
+					// 	}
+                    //     localStorage.setItem('obj', JSON.stringify(testeObjeto));
 						
-						setDadosHtml(testeObjeto);
+					// 	setDadosHtml(testeObjeto);
 				
-					})
-					.catch((error) =>{
-                        console.log("buscando dados locais");
-                        var dadoss = JSON.parse(localStorage.getItem('obj'));
+					// })
+					// .catch((error) =>{
+                    //     console.log("buscando dados locais");
+                    //     var dadoss = JSON.parse(localStorage.getItem('obj'));
                         
-                        setDadosHtml(dadoss);
-                     console.error('Whoops! Erro:', error.message || error)
-                    });
+                    //     setDadosHtml(dadoss);
+                    //  console.error('Whoops! Erro:', error.message || error)
+                    // });
 				
 				}
 				teste();
