@@ -94,22 +94,61 @@
 						}	
                 }
 
-				function teste(){
+                (async () => {
                     Parse.initialize("IjQnI1UFf79e2xjdbHVZglYm1wPtPnAyqPngEXOJ", "LNr3vzBdBfjQO58z79K6jhJqnE4HU2mxXJC0ZD7j"); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
-                    Parse.serverURL = "https://refrigeracaosaoroque.netlify.app/";
+                     Parse.serverURL = "https://parseapi.back4app.com";
+                
+                    const query = new Parse.Query('dados');
+                    // You can also query by using a parameter of an object
+                    // query.equalTo('objectId', 'xKue915KBG');
+                    var testeObjeto = [];
+                    const results = await query.find();
+                    try {
+                        for (const object of results) {
+                            const myCustomKey2Name = object.get('nome');
+                            console.log(myCustomKey2Name);
+                            var objeto = {};
+                        objeto.id =  object.id;
+							objeto.nome =  object.get('nome');
+							objeto.desc = object.get('desc');
+							objeto.preco = object.get('preco');
+							objeto.desclonga = object.get('desclonga');
+							objeto.foto1 = object.get('foto1');
+							objeto.foto2 = object.get('foto2');
+							objeto.foto3 = object.get('foto3');
+							testeObjeto.push(objeto);
+                        }
+                        localStorage.setItem('obj', JSON.stringify(testeObjeto));
+                        setDadosHtml(testeObjeto);
+                    } catch (error) {
+                        console.error('Error while fetching MyCustomClassName', error);
+                        var dadoss = JSON.parse(localStorage.getItem('obj'));
+                        
+                        setDadosHtml(dadoss);
+                    }
+                    })();
 
-                    var user = new Parse.User();
-                        user.save({
-                        username: "s",
-                        email: "s",
-                        password: "s"
-                        }).then(function(response) {
-                        alert('New object create with success! ObjectId: ' + response.id + ', '+ user.get('username'));
-                        }).catch(function(error) {
-                            console.log(error);
-                        alert('Error: ' + error.message);
-                        });
+				function teste(){
+                    // Parse.initialize("IjQnI1UFf79e2xjdbHVZglYm1wPtPnAyqPngEXOJ", "LNr3vzBdBfjQO58z79K6jhJqnE4HU2mxXJC0ZD7j"); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+                    // Parse.serverURL = "https://parseapi.back4app.com";
+                    // var Pet = Parse.Object.extend("dados");
+                    
+                    // var mypet = new Pet();
+                    // mypet.set("nome", "Maquina de lavar Eletrolux ");
+                    // mypet.set("desc", "12 Kg Semi-nova");
+                    // mypet.set("preco", "R$ 700,00");
+                    // mypet.set("desclonga", "12 Kg Semi-nova");
+                    // mypet.set("foto1", "https://i.ibb.co/hVz6F2s/d2be02a5-c63f-4719-ba1d-294065dc3489.jpg");
+                    // mypet.set("foto2", "https://i.ibb.co/hVz6F2s/d2be02a5-c63f-4719-ba1d-294065dc3489.jpg");
+                    // mypet.set("foto3", "https://i.ibb.co/hVz6F2s/d2be02a5-c63f-4719-ba1d-294065dc3489.jpg");
 
+                    // mypet.save().then(function(pet){
+                    //     console.log('Pet created successful with name: ' + pet.get("nome"));
+                    // }).catch(function(error){
+                    //     console.log('Error: ' + error.message);
+                    // });
+               
+                      
 					// fetch(`https://spreadsheets.google.com/feeds/cells/1JhQTOHxxcC5EVrL966XE5O3RF-wioKGGsb4r0X0hb8k/1/public/full?alt=json`)
 					// .then((body) => body.json())
 					// .then((data) => {
