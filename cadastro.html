@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Refrigeração São Roque</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/stylescad.css" rel="stylesheet" />
+        <script type="text/javascript" src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="index.html">Catálogo</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active inicio" aria-current="page" href="index.html">Inicio</a></li>
+                    </ul>
+                    <form class="d-flex">
+                        <a href="https://www.instagram.com/refrigeracaosaoroquepm/?hl=pt-br" class="btn btn-outline-dark" >
+                            <i class="bi bi-instagram me-1"></i>
+                          Instagram
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+     
+
+        <!-- Product section-->
+        <section class="principal">
+            <br>
+            <div class="row">
+                <div class="col-25">
+                  <label for="fname">Nome Produto:</label>
+                </div>
+                <div class="col-75">
+                  <input type="text" id="nome" placeholder="Nome produto">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-25">
+                  <label for="fname">Descrição Curta:</label>
+                </div>
+                <div class="col-75">
+                  <input type="text" id="desc" placeholder="Descrição curta">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-25">
+                  <label for="fname">Preço:</label>
+                </div>
+                <div class="col-75">
+                  <input type="text" id="preco" placeholder="Preço">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-25">
+                  <label for="fname">Descrição longa:</label>
+                </div>
+                <div class="col-75">
+                  <input type="text" id="desclonga" placeholder="Descrição longa">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-25">
+                  <label for="fname">Link foto1:</label>
+                </div>
+                <div class="col-75">
+                  <input type="text" id="foto1" placeholder="Link foto">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-25">
+                  <label for="fname">Link foto2:</label>
+                </div>
+                <div class="col-75">
+                  <input type="text" id="foto2" placeholder="Link foto 2">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-25">
+                  <label for="fname">Link foto3:</label>
+                </div>
+                <div class="col-75">
+                  <input type="text" id="foto3" placeholder="Link foto 3">
+                </div>
+              </div>
+              <br>
+              <button class="button" onclick="cadastrar()">Cadastrar</button>
+        </section>
+       
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Efex 2021</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+       <script type:"text/javascript">
+            function cadastrar(){
+                Parse.initialize("IjQnI1UFf79e2xjdbHVZglYm1wPtPnAyqPngEXOJ", "LNr3vzBdBfjQO58z79K6jhJqnE4HU2mxXJC0ZD7j"); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+                    Parse.serverURL = "https://parseapi.back4app.com";
+                    var Pet = Parse.Object.extend("dados");
+                    
+                    var mypet = new Pet();
+                    mypet.set("nome", document.getElementById('nome').value);
+                    mypet.set("desc", document.getElementById('desc').value);
+                    mypet.set("preco", document.getElementById('preco').value);
+                    mypet.set("desclonga", document.getElementById('desclonga').value);
+                    mypet.set("foto1", document.getElementById('foto1').value);
+                    mypet.set("foto2", document.getElementById('foto2').value);
+                    mypet.set("foto3", document.getElementById('foto3').value);
+
+                    mypet.save().then(function(pet){
+                        alert('Pet created successful with name: ' + pet.get("nome"));
+                    }).catch(function(error){
+                        alert('Error: ' + error.message);
+                    });
+                
+           
+            }
+       </script>
+       <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PGR15YZBZK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PGR15YZBZK');
+</script>
+    </body>
+</html>
