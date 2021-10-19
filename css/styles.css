@@ -11372,8 +11372,17 @@ textarea.form-control-lg {
 }
 
 .left{
+  width: 80%;
+  float:left;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
 }
 .right{
-  
+  width: 20%; 
+  float:right;
+  height: 300px;
+  text-align: center;
 }
